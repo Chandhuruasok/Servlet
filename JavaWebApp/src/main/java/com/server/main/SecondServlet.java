@@ -47,8 +47,16 @@ public class SecondServlet extends HttpServlet {
 		System.out.println("post");
 		int num1=Integer.parseInt(request.getParameter("number1"));
 		int num2=Integer.parseInt(request.getParameter("number2"));
+		String name=request.getParameter("username");
+		String name1=request.getParameter("email");
+		String name2=request.getParameter("password");
+		String name3=request.getParameter("confirm-password");
 		PrintWriter out=response.getWriter();
 		out.println(num1+num2);
+		out.println(name);
+		out.println(name1);
+		out.println(name2);
+		out.println(name3);
 	}
 
 }
