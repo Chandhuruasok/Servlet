@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/ThirdServlet")
 public class ThirdServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    InputArray inputArray=new InputArray();
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -30,21 +30,18 @@ public class ThirdServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-		String userName=request.getParameter("UserName");
-		String email=request.getParameter("Email");
-		String password=request.getParameter("Password");
-		String confirmPassword=request.getParameter("Confirm Password");
+		String userName=request.getParameter("userName");
+		String email=request.getParameter("email");
+		String password=request.getParameter("password");
+		String confirmPassword=request.getParameter("confirmPassword");
 		String dob=request.getParameter("birthdate");
-		String phoneNumber=request.getParameter("Phone Number");
+		String phoneNumber=request.getParameter("phoneNumber");
 		String gender=request.getParameter("gender");
+		String food=request.getParameter("food");
 		PrintWriter out=response.getWriter();
-		out.println(userName);
-		out.println(email);
-		out.println(password);
-		out.println(confirmPassword);
-		out.println(dob);
-		out.println(phoneNumber);
-		out.println(gender);
+		InputArray.add(userName, email, password, confirmPassword, dob,phoneNumber,gender,food);
+        request.setAttribute("array", inputArray.getArray());
+		request.getRequestDispatcher("view.jsp").forward(request, response);
 	
 	}
 
