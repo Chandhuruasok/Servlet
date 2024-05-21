@@ -1,4 +1,4 @@
-package com.server.method;
+package com.server.model;
 
 public class PojoClass {
 String userName,email,password,confirmPassword,dob,phoneNumber,gender,food;
