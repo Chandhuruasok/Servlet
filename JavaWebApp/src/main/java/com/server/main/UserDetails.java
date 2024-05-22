@@ -36,7 +36,7 @@ public class UserDetails extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		RequestDispatcher dispatcher=request.getRequestDispatcher("user.jsp");
+	RequestDispatcher dispatcher=request.getRequestDispatcher("viewuser.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -45,10 +45,10 @@ public class UserDetails extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		PojoNew pojo=new PojoNew();
-		String userName=request.getParameter("username");
-		String email=request.getParameter("email");
-		String phoneNumber=request.getParameter("phonenumber");
+		doGet(request,response);
+		String userName=request.getParameter("user_name");
+		String email=request.getParameter("user_email");
+		String phoneNumber=request.getParameter("user_phoneNo");
 		pojo.setUserName(userName);
 		pojo.setEmail(email);
 		pojo.setPhoneNumber(phoneNumber);
@@ -66,13 +66,37 @@ public class UserDetails extends HttpServlet {
 			{
 				s.printStackTrace();
 			}
-		
+	//request.getRequestDispatcher("user.jsp").forward(request, response);
 		
 		
 RequestDispatcher dispatcher= request.getRequestDispatcher("user.jsp");	
-
-	}
-	}	
+		String action=request.getParameter("action");
+		if(action!=null)
+		{
+		switch (action) {
+        case "delete":
+            try {
+                
+                JdbcUser user=new JdbcUser();
+                user.deleteUser("deleteid");
+            } catch (NumberFormatException | ClassNotFoundException | SQLException e) {
+                e.printStackTrace();
+                
+            }
+            try {
+            request.setAttribute("viewing", user.selectAllusers());
+            }
+            catch (NumberFormatException | ClassNotFoundException | SQLException e) {
+                e.printStackTrace();
+                
+            }
+            request.getRequestDispatcher("viewuser.jsp").forward(request, response);
+            break;
+		}
+           
+    }
+}
+}	
 	
 
 
