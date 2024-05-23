@@ -53,19 +53,22 @@
 </style>
 </head>
 <body>
+<h2>Registration Form</h2>
 <div class="container" >
 <form action="UserDetails" method="post">
 <div class="input-group">
 				<label for="username">User Name:</label>
-                <input type="text" id="username" name="user_name" placeholder="Enter the user name" required><br>
+                <input type="text" id="username" name="username" placeholder="Enter the user name" required><br>
         </div>
         <div class="input-group">
         	<label for="email">Email:</label>
-         	<input type="email" id="email" name="user_email" placeholder="Enter the email id" required><br>
+         	<input type="email" id="email" name="useremail" placeholder="Enter the email id" required><br>
          </div>
          <div class="input-group">
 <label for="phone number">Phone Number:</label>
-                <input type="number" id="phonenumber" name="user_phoneNo" placeholder="Enter the phone number" required><br>              
+                <input type="number" id="phonenumber" name="userphoneNo" placeholder="Enter the phone number" required><br>              
+<label for="id">Id:</label>
+                <input type="number" id="id" name="id" placeholder="Enter the Id" required><br>
 </div>
 <button type="submit">Register</button>
 </form>

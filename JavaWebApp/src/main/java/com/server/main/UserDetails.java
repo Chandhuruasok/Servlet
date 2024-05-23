@@ -36,8 +36,26 @@ public class UserDetails extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+String action=request.getParameter("action");
+		
+		if(action!=null)
+		{
+		switch (action) {
+        case "delete":
+        	int deleteNo=Integer.parseInt(request.getParameter("deleteid"));
+            try {
+                
+                JdbcUser user=new JdbcUser();
+                
+                user.deleteUser(deleteNo);
+            } catch (NumberFormatException | ClassNotFoundException | SQLException e) {
+                e.printStackTrace();
+                
+            }
 	RequestDispatcher dispatcher=request.getRequestDispatcher("viewuser.jsp");
 		dispatcher.forward(request, response);
+	}
+		}
 	}
 
 	/**
@@ -46,57 +64,57 @@ public class UserDetails extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request,response);
-		String userName=request.getParameter("user_name");
-		String email=request.getParameter("user_email");
-		String phoneNumber=request.getParameter("user_phoneNo");
+		String userName=request.getParameter("username");
+		
+		String email=request.getParameter("useremail");
+		String phoneNumber=request.getParameter("userphoneNo");
+		int id=Integer.parseInt(request.getParameter("id"));
 		pojo.setUserName(userName);
 		pojo.setEmail(email);
 		pojo.setPhoneNumber(phoneNumber);
-		try
-		{
+		pojo.setId(id);
+		
 			try
 			{
 			   user.login(pojo);
+			   //RequestDispatcher dispatcher= request.getRequestDispatcher("user.jsp");
 			}
-			catch(ClassNotFoundException e)
+			catch(ClassNotFoundException | SQLException e)
 			{
 				e.printStackTrace();
 			}
-		}catch(SQLException s)
-			{
-				s.printStackTrace();
-			}
 	//request.getRequestDispatcher("user.jsp").forward(request, response);
 		
-		
-RequestDispatcher dispatcher= request.getRequestDispatcher("user.jsp");	
-		String action=request.getParameter("action");
-		if(action!=null)
-		{
-		switch (action) {
-        case "delete":
-            try {
-                
-                JdbcUser user=new JdbcUser();
-                user.deleteUser("deleteid");
-            } catch (NumberFormatException | ClassNotFoundException | SQLException e) {
-                e.printStackTrace();
-                
-            }
-            try {
-            request.setAttribute("viewing", user.selectAllusers());
-            }
-            catch (NumberFormatException | ClassNotFoundException | SQLException e) {
-                e.printStackTrace();
-                
-            }
+//			String action=request.getParameter("action");
+//		
+//		if(action!=null)
+//		{
+//		switch (action) {
+//        case "delete":
+//        	int deleteNo=Integer.parseInt(request.getParameter("deleteid"));
+//            try {
+//                
+//                JdbcUser user=new JdbcUser();
+//                
+//                user.deleteUser(deleteNo);
+//            } catch (NumberFormatException | ClassNotFoundException | SQLException e) {
+//                e.printStackTrace();
+//                
+//            }
+//            try {
+//            request.setAttribute("viewing", user.selectAllusers());
+//            }
+//            catch (NumberFormatException | ClassNotFoundException | SQLException e) {
+//                e.printStackTrace();
+//                
+//            }
             request.getRequestDispatcher("viewuser.jsp").forward(request, response);
-            break;
+            //break;
 		}
            
-    }
+  //  }
 }
-}	
+//}	
 	
 
 

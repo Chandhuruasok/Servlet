@@ -94,7 +94,9 @@ input[type=text]:focus, input[type=password]:focus {
 <td>User Name</td>
 <td>Email</td>
 <td>Phone Number</td>
+<td>Id</td>
 <td>Action</td>
+
 </tr>
     
      <tbody>
@@ -109,9 +111,10 @@ input[type=text]:focus, input[type=password]:focus {
             <td><%=pojo.getUserName() %></td>
             <td><%=pojo.getEmail() %></td>
             <td><%= pojo.getPhoneNumber() %></td>
+            <td><%= pojo.getId() %></td>
             <td><form action="UserDetails" method="post">
                     <input type="hidden" name="action" value="delete"> 
-                        <input type="hidden" name="deleteid" value="<%= pojo.getUserName() %>">
+                        <input type="hidden" name="deleteid" value="<%= pojo.getId() %>">
                     <!-- Pass user ID -->
                     <button type="submit" class="delete-btn">Delete</button>
                 </form></td>

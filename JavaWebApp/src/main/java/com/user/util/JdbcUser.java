@@ -14,19 +14,21 @@ public class JdbcUser implements UserDAO {
 	{
 		 //System.out.println(p.getUserName());
 		Connection connection=Util.getConnection();
-		String query="insert into registration(user_name,user_email,user_phoneNo)values(?,?,?)";
+		String query="insert into login(username,useremail,userphoneNo,id)values(?,?,?,?)";
 		PreparedStatement ps=connection.prepareStatement(query);
 		ps.setString(1,p.getUserName());
 		ps.setString(2, p.getEmail());
 		ps.setString(3,p.getPhoneNumber());
+		ps.setInt(4, p.getId());
 		ps.executeUpdate();
 	}
-public void deleteUser(String name) throws ClassNotFoundException, SQLException {
+public void deleteUser(int id) throws ClassNotFoundException, SQLException {
         
         
         Connection connection = Util.getConnection();
-        String delete = "delete from registration where name=?";
+        String delete = "delete from login where id=?";
         PreparedStatement prepareStatement = connection.prepareStatement(delete);
+        prepareStatement.setInt(1,id);
         int row = prepareStatement.executeUpdate();
         System.out.println("deleted row :"+row);
            
@@ -36,16 +38,17 @@ public void deleteUser(String name) throws ClassNotFoundException, SQLException 
 	{
 		ArrayList<PojoNew>viewuser=new ArrayList<PojoNew>();
 		Connection connection=Util.getConnection();
-		String query="select * from registration";
+		String query="select * from login";
 		PreparedStatement ps=connection.prepareStatement(query);
 		ResultSet rs=ps.executeQuery();
 		while(rs.next())
 		{
 			
-			String name=rs.getString("user_name");
-			String email=rs.getString("user_email");
-			String phone=rs.getString("user_phoneNo");
-			viewuser.add(new PojoNew(name,email,phone));
+			String name=rs.getString("username");
+			String email=rs.getString("useremail");
+			String phone=rs.getString("userphoneNo");
+			int id=rs.getInt("id");
+			viewuser.add(new PojoNew(name,email,phone,id));
 		}
 		return viewuser;
 		
