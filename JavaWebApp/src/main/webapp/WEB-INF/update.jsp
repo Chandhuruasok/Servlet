@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@ page import="com.user.util.JdbcUser" %>
-    <%@ page import="java.util.ArrayList" %>
-    <%@ page import="com.server.model.PojoNew" %>
+    <%@ page import="com.server.main.UserDetails" %>
+    <%@ page import="com.server.main.UserDetails1" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Registration</title>
+<title>Insert title here</title>
+<style>
 <style>
 table {
     border-collapse: collapse;
@@ -87,51 +87,28 @@ input[type=text]:focus, input[type=password]:focus {
 </style>
 </head>
 <body>
-<h3>Registration Page</h3>
-<form >
-<table border="1">
-<tr>
-<td>User Name</td>
-<td>Email</td>
-<td>Phone Number</td>
-<td>Id</td>
-<td>Action</td>
-<td>Action</td>
-</tr>
-    
-     <tbody>
-        <% 
-        JdbcUser user=new JdbcUser();
-        ArrayList<PojoNew> array = user.selectAllUsers();
-      
-           for (PojoNew pojo : array) {
-        %>
-        <tr>
-            
-            <td><%=pojo.getUserName() %></td>
-            <td><%=pojo.getEmail() %></td>
-            <td><%= pojo.getPhoneNumber() %></td>
-            <td><%= pojo.getId() %></td>
-           <td><form action="UserDetails" method="get">
-                        <input type="hidden" name="action" value="delete">
-                        <input type="hidden" name="deleteid" value="<%= pojo.getId() %>">
-                        <button type="submit">Delete</button>
-                    </form></td>
-                  <td><form action="UserDetails1" method="post">
-                        <input type="hidden" name="action" value="update">
-                        <input type="hidden" name="updateid" value="<%=pojo.getId() %>">
-                        <button type="submit" >Update</button>
-                  </form></td>
-				
-            
-        </tr>
-        <% 
-            }
-        
-        %>
-        
-    </tbody>
-</table>
+<h2>Registration Form</h2>
+<form action="UserDetails1" method="post">
+<input type="hidden" name="id" value="<%= request.getParameter("id") %>">
+<div class="container" >
+<div class="input-group">
+				<label for="username">User Name:</label>
+                <input type="text" id="username" name="username" placeholder="Enter the user name" required><br>
+        </div>
+        <div class="input-group">
+        	<label for="email">Email:</label>
+         	<input type="email" id="email" name="useremail" placeholder="Enter the email id" required><br>
+         </div>
+         <div class="input-group">
+<label for="phone number">Phone Number:</label>
+                <input type="number" id="phonenumber" name="userphoneNo" placeholder="Enter the phone number" required><br>              
+</div>
+<input type="hidden" name="action" value="update">
+        <input type="hidden" name="updateid" value="<%= request.getParameter("updateid") %>">
+        <button type="submit">Update</button>
+
 </form>
+
+
 </body>
 </html>

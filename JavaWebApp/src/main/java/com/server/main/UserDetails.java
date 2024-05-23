@@ -36,8 +36,8 @@ public class UserDetails extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-String action=request.getParameter("action");
-		
+		String action=request.getParameter("action");
+		System.out.println(action);
 		if(action!=null)
 		{
 		switch (action) {
@@ -54,6 +54,36 @@ String action=request.getParameter("action");
             }
 	RequestDispatcher dispatcher=request.getRequestDispatcher("viewuser.jsp");
 		dispatcher.forward(request, response);
+		break;
+		
+//        case "update":
+//        	
+//        		JdbcUser user=new JdbcUser();
+//        		int id = Integer.parseInt(request.getParameter("updateid"));
+//        		pojo.setId(id);
+//        		pojo.setUserName(request.getParameter("username"));
+//                pojo.setEmail(request.getParameter("useremail"));
+//                pojo.setPhoneNumber(request.getParameter("userphoneNo"));
+//                
+//                
+//                
+//                try {
+//                
+//                user.updateUser(pojo);
+//            } catch (NumberFormatException e) {
+//                e.printStackTrace();
+//                
+//            } catch (ClassNotFoundException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			} catch (SQLException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//        	RequestDispatcher dispatcher1=request.getRequestDispatcher("viewuser.jsp");
+//    		dispatcher1.forward(request, response);
+//    		
+//		
 	}
 		}
 	}
@@ -63,9 +93,9 @@ String action=request.getParameter("action");
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request,response);
+		//doGet(request,response);
 		String userName=request.getParameter("username");
-		
+		System.out.println(userName);
 		String email=request.getParameter("useremail");
 		String phoneNumber=request.getParameter("userphoneNo");
 		int id=Integer.parseInt(request.getParameter("id"));
@@ -83,38 +113,14 @@ String action=request.getParameter("action");
 			{
 				e.printStackTrace();
 			}
-	//request.getRequestDispatcher("user.jsp").forward(request, response);
-		
-//			String action=request.getParameter("action");
-//		
-//		if(action!=null)
-//		{
-//		switch (action) {
-//        case "delete":
-//        	int deleteNo=Integer.parseInt(request.getParameter("deleteid"));
-//            try {
-//                
-//                JdbcUser user=new JdbcUser();
-//                
-//                user.deleteUser(deleteNo);
-//            } catch (NumberFormatException | ClassNotFoundException | SQLException e) {
-//                e.printStackTrace();
-//                
-//            }
-//            try {
-//            request.setAttribute("viewing", user.selectAllusers());
-//            }
-//            catch (NumberFormatException | ClassNotFoundException | SQLException e) {
-//                e.printStackTrace();
-//                
-//            }
+	
             request.getRequestDispatcher("viewuser.jsp").forward(request, response);
-            //break;
+            
 		}
            
-  //  }
+  
 }
-//}	
+	
 	
 
 

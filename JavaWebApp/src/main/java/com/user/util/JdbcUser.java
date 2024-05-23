@@ -12,7 +12,7 @@ import com.server.model.PojoNew;
 public class JdbcUser implements UserDAO {
 	public static void login(PojoNew p) throws ClassNotFoundException, SQLException
 	{
-		 //System.out.println(p.getUserName());
+		 
 		Connection connection=Util.getConnection();
 		String query="insert into login(username,useremail,userphoneNo,id)values(?,?,?,?)";
 		PreparedStatement ps=connection.prepareStatement(query);
@@ -34,6 +34,18 @@ public void deleteUser(int id) throws ClassNotFoundException, SQLException {
            
        
    }
+public void updateUser(PojoNew pojo) throws ClassNotFoundException, SQLException
+{
+	 
+	Connection connection=Util.getConnection();
+	String query="update login set username=?,useremail=?,userphoneNo=? where id=?";
+	PreparedStatement ps=connection.prepareStatement(query);
+	ps.setString(1,pojo.getUserName());
+	ps.setString(2, pojo.getEmail());
+	ps.setString(3,pojo.getPhoneNumber());
+	ps.setInt(4, pojo.getId());
+	ps.executeUpdate();
+}
 	public  ArrayList<PojoNew>  selectAllUsers() throws ClassNotFoundException, SQLException
 	{
 		ArrayList<PojoNew>viewuser=new ArrayList<PojoNew>();
@@ -48,6 +60,7 @@ public void deleteUser(int id) throws ClassNotFoundException, SQLException {
 			String email=rs.getString("useremail");
 			String phone=rs.getString("userphoneNo");
 			int id=rs.getInt("id");
+			System.out.println(id);
 			viewuser.add(new PojoNew(name,email,phone,id));
 		}
 		return viewuser;
@@ -60,4 +73,5 @@ public void deleteUser(int id) throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	 
 }
