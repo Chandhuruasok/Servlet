@@ -89,7 +89,6 @@ input[type=text]:focus, input[type=password]:focus {
 <body>
 <h2>Registration Form</h2>
 <form action="UserDetails1" method="post">
-<input type="hidden" name="id" value="<%= request.getParameter("id") %>">
 <div class="container" >
 <div class="input-group">
 				<label for="username">User Name:</label>
@@ -106,6 +105,7 @@ input[type=text]:focus, input[type=password]:focus {
 <input type="hidden" name="action" value="update">
         <input type="hidden" name="updateid" value="<%= request.getParameter("updateid") %>">
         <button type="submit">Update</button>
+        
 
 </form>
 

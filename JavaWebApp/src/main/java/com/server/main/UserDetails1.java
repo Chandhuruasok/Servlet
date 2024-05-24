@@ -46,11 +46,10 @@ public class UserDetails1 extends HttpServlet {
 //		doGet(request, response);
 		String action=request.getParameter("action");
 		String userName=request.getParameter("username");
-		System.out.println(userName);
 		String email=request.getParameter("useremail");
 		String phoneNumber=request.getParameter("userphoneNo");
-		System.out.println(request.getParameter("id"));
-		int id=Integer.parseInt(request.getParameter("id"));
+		System.out.println(request.getParameter("updateid"));
+		int id=Integer.parseInt(request.getParameter("updateid"));
 		pojo.setUserName(userName);
 		pojo.setEmail(email);
 		pojo.setPhoneNumber(phoneNumber);

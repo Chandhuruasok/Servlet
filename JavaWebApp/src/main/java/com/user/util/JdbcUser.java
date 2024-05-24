@@ -60,18 +60,23 @@ public void updateUser(PojoNew pojo) throws ClassNotFoundException, SQLException
 			String email=rs.getString("useremail");
 			String phone=rs.getString("userphoneNo");
 			int id=rs.getInt("id");
-			System.out.println(id);
+			
 			viewuser.add(new PojoNew(name,email,phone,id));
 		}
 		return viewuser;
 		
 		
 	}
-	
 	@Override
 	public ArrayList<PojoNew> selectAllusers() throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+//	@Override
+//	public ArrayList<PojoNew> selectAllusers() throws ClassNotFoundException, SQLException {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 	 
 }

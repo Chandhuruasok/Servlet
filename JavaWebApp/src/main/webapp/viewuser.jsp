@@ -117,7 +117,7 @@ input[type=text]:focus, input[type=password]:focus {
                         <input type="hidden" name="deleteid" value="<%= pojo.getId() %>">
                         <button type="submit">Delete</button>
                     </form></td>
-                  <td><form action="UserDetails1" method="post">
+                  <td><form action="update.jsp" >
                         <input type="hidden" name="action" value="update">
                         <input type="hidden" name="updateid" value="<%=pojo.getId() %>">
                         <button type="submit" >Update</button>

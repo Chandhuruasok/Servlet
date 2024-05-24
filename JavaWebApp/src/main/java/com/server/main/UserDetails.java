@@ -95,7 +95,7 @@ public class UserDetails extends HttpServlet {
 		// TODO Auto-generated method stub
 		//doGet(request,response);
 		String userName=request.getParameter("username");
-		System.out.println(userName);
+
 		String email=request.getParameter("useremail");
 		String phoneNumber=request.getParameter("userphoneNo");
 		int id=Integer.parseInt(request.getParameter("id"));
