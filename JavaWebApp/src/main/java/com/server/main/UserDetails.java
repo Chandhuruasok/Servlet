@@ -55,7 +55,19 @@ public class UserDetails extends HttpServlet {
 	RequestDispatcher dispatcher=request.getRequestDispatcher("viewuser.jsp");
 		dispatcher.forward(request, response);
 		break;
-		
+        case "search":
+        	int searchNo=Integer.parseInt(request.getParameter("searchid"));
+        	System.out.println(searchNo);
+        	try {
+                
+                
+                
+                user.search(searchNo);
+            } catch (NumberFormatException | ClassNotFoundException | SQLException e) {
+                e.printStackTrace();
+            }
+        	RequestDispatcher dispatcher3=request.getRequestDispatcher("viewuser.jsp");
+    		dispatcher3.forward(request, response);
 //        case "update":
 //        	
 //        		JdbcUser user=new JdbcUser();

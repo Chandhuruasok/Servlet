@@ -89,6 +89,12 @@ input[type=text]:focus, input[type=password]:focus {
 <body>
 <h3>Registration Page</h3>
 <form >
+<form action="UserDetails" method="get">
+			      		<input type="hidden" name="action" value="search">
+			      		
+			      		<input type="number"  name="searchid" palceholder="Type to Search....">
+			      		<button type="submit" title="search">Search</button>
+			      </form>
 <table border="1">
 <tr>
 <td>User Name</td>
@@ -100,6 +106,7 @@ input[type=text]:focus, input[type=password]:focus {
 </tr>
     
      <tbody>
+     
         <% 
         JdbcUser user=new JdbcUser();
         ArrayList<PojoNew> array = user.selectAllUsers();
@@ -122,7 +129,7 @@ input[type=text]:focus, input[type=password]:focus {
                         <input type="hidden" name="updateid" value="<%=pojo.getId() %>">
                         <button type="submit" title="update">Update</button>
                   </form></td>
-				
+			      
             
         </tr>
         <% 

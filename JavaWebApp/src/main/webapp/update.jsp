@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@ page import="com.server.main.UserDetails" %>
+    
     <%@ page import="com.server.main.UserDetails1" %>
 <!DOCTYPE html>
 <html>

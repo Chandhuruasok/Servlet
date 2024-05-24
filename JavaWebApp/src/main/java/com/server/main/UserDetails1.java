@@ -87,6 +87,7 @@ public class UserDetails1 extends HttpServlet {
 			}
         	RequestDispatcher dispatcher1=request.getRequestDispatcher("viewuser.jsp");
     		dispatcher1.forward(request, response);
+    	
     		
 		
 	}

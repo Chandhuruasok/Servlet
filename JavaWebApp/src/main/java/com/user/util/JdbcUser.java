@@ -46,6 +46,15 @@ public void updateUser(PojoNew pojo) throws ClassNotFoundException, SQLException
 	ps.setInt(4, pojo.getId());
 	ps.executeUpdate();
 }
+public void search(int id) throws ClassNotFoundException, SQLException
+{
+	Connection connection=Util.getConnection();
+	String query="select username,useremail,userphoneNo from login where id like=?";
+	PreparedStatement ps=connection.prepareStatement(query);
+	
+	ps.setInt(1, "%"+id+"%");
+	ps.executeQuery();
+}
 	public  ArrayList<PojoNew>  selectAllUsers() throws ClassNotFoundException, SQLException
 	{
 		ArrayList<PojoNew>viewuser=new ArrayList<PojoNew>();
